@@ -27,6 +27,18 @@ function loadJobCards(){
     for(const obj of jobList){
         
         const job_cards = document.createElement('div');
+
+        let badgeHTML = "";
+        if (obj.isInterviewed === true) {
+            badgeHTML = `<button class="btn btn-success text-white mb-2">Interviewed</button>`;
+        }
+        else if (obj.isRejected === true) {
+            badgeHTML = `<button class="btn btn-error text-white mb-2">Rejected</button>`;
+        }
+        else {
+            badgeHTML = `<button class="btn bg-base-300 text-info-content mb-2">Not Applied</button>`;
+        }
+        
         job_cards.innerHTML = `
         <div class="text bg-base-200 rounded-[8px] p-6">
                     <div class="flex items-center justify-between">
@@ -46,9 +58,7 @@ function loadJobCards(){
                     <span>•</span>
                     <span>${obj.salary}</span>
                     </p>
-                    <button id="badge-n/a" class="btn btn-xs sm:btn-md bg-base-300 text-info-content mb-2">Not Applied</button>
-                    <button id="badge-int" class="btn btn-active btn-success btn-xs sm:btn-md text-white mb-2 hidden">Interviewed</button>
-                    <button id="badge-rej" class="btn btn-active btn-error btn-xs sm:btn-md text-white mb-2 hidden">Rejected</button>
+                    ${badgeHTML}
                     <p class=" text-[14px]  text-[#323B49] mb-3">${obj.description}</p>
                     <button id="interview-btn" onclick="interview_button(${index})" class="interview-btn btn btn-xs sm:btn-md btn-soft btn-success w-28">INTERVIEW</button>
                     <button id="reject-btn" onclick="reject_button(${index})" class="btn btn-xs sm:btn-md btn-soft btn-error w-28">REJECTED</button>
@@ -102,6 +112,8 @@ function displaySection(id){
 }
 
 
+
+
 function interview_button(idx){
     console.log(jobList[idx], 'interviewed');
     // jobList[idx].isInterviewed = true;
@@ -111,14 +123,25 @@ function interview_button(idx){
         console.log(jobList[idx], 'inside condition 1');
         interviewList.push(jobList[idx]);
         jobList[idx].isInterviewed = true;
+        // showBadge();
     }
+
+    loadJobCards();
     loadJobCards_Intewview();
+    loadJobCards_Rejected();
 }
 
 function reject_button(idx){
-    jobList[idx].isRejected = true;
-    jobList[idx].isInterviewed = false;
-    is_in_List(jobList[idx], rejectList);
+    if((jobList[idx].isInterviewed === false)&&(jobList[idx].isRejected === false)){
+        // console.log(jobList[idx], 'inside condition 1');
+        rejectList.push(jobList[idx]);
+        jobList[idx].isRejected = true;
+        // showBadge();
+    }
+  
+    loadJobCards();
+    loadJobCards_Intewview();
+    loadJobCards_Rejected();
 }
 
 function is_in_List(obj, inter_arr, reject_arr){
@@ -159,6 +182,17 @@ function loadJobCards_Intewview(){
     var index = 0;
     for(const obj of interviewList){
         
+        let badgeHTML = "";
+        if (obj.isInterviewed === true) {
+            badgeHTML = `<button class="btn btn-success text-white mb-2">Interviewed</button>`;
+        }
+        else if (obj.isRejected === true) {
+            badgeHTML = `<button class="btn btn-error text-white mb-2">Rejected</button>`;
+        }
+        else {
+            badgeHTML = `<button class="btn bg-base-300 text-info-content mb-2">Not Applied</button>`;
+        }
+
         const job_cards = document.createElement('div');
         job_cards.innerHTML = `
         <div class="text bg-base-200 rounded-[8px] p-6">
@@ -179,13 +213,76 @@ function loadJobCards_Intewview(){
                     <span>•</span>
                     <span>${obj.salary}</span>
                     </p>
-                    <button class="btn btn-xs sm:btn-md bg-base-300 text-info-content mb-2">Not Applied</button>
+                    ${badgeHTML}
                     <p class=" text-[14px]  text-[#323B49] mb-3">${obj.description}</p>
-                    <button id="interview-btn" onclick="interview_button(${index})" class="interview-btn btn btn-xs sm:btn-md btn-soft btn-accent w-28">INTERVIEW</button>
-                    <button id="reject-btn" onclick="reject_button(${index})" class="btn btn-xs sm:btn-md btn-soft btn-secondary w-28">REJECTED</button>
+                    <button id="interview-btn" onclick="interview_button(${index})" class="interview-btn btn btn-xs sm:btn-md btn-soft btn-success w-28">INTERVIEW</button>
+                    <button id="reject-btn" onclick="reject_button(${index})" class="btn btn-xs sm:btn-md btn-soft btn-error w-28">REJECTED</button>
                 </div>
         `;
         int_job_container.append(job_cards);
+        index++;
+    };
+}
+function loadJobCards_Rejected(){
+    //setting reject job number
+    const reject_jobNum = document.getElementById('dashboard-reject-job');
+    reject_jobNum.innerText = rejectList.length;
+    
+
+    //toggle empty section
+    const rej_job_container = getElement('reject-job-container');
+    const emptyJob_reject_section = getElement('empty_reject');
+
+    if(rejectList.length == 0){
+        emptyJob_reject_section.classList.remove('hidden');
+    }
+    else{
+        emptyJob_reject_section.classList.add('hidden');
+    }
+
+    //loading cards
+    rej_job_container.innerHTML = '';
+    var index = 0;
+    for(const obj of rejectList){
+        
+        let badgeHTML = "";
+        if (obj.isInterviewed === true) {
+            badgeHTML = `<button class="btn btn-success text-white mb-2">Interviewed</button>`;
+        }
+        else if (obj.isRejected === true) {
+            badgeHTML = `<button class="btn btn-error text-white mb-2">Rejected</button>`;
+        }
+        else {
+            badgeHTML = `<button class="btn bg-base-300 text-info-content mb-2">Not Applied</button>`;
+        }
+
+        const job_cards = document.createElement('div');
+        job_cards.innerHTML = `
+        <div class="text bg-base-200 rounded-[8px] p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class=" font-semibold text-[20px]   text-[#002C5C]">${obj.company_name}</p>
+                            <p class=" text-[16px]  text-[#64748B]">${obj.position}</p>
+                        </div>
+                        <button onclick="deleteJob(${index})" class="btn btn-circle">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </div>
+                    <br>
+                    <p class="flex items-center flex-wrap gap-1 md:gap-2 text-[14px] text-[#64748B] mb-5">
+                    <span>${obj.location}</span>
+                    <span>•</span>
+                    <span>${obj.type}</span>
+                    <span>•</span>
+                    <span>${obj.salary}</span>
+                    </p>
+                    ${badgeHTML}
+                    <p class=" text-[14px]  text-[#323B49] mb-3">${obj.description}</p>
+                    <button id="interview-btn" onclick="interview_button(${index})" class="interview-btn btn btn-xs sm:btn-md btn-soft btn-success w-28">INTERVIEW</button>
+                    <button id="reject-btn" onclick="reject_button(${index})" class="btn btn-xs sm:btn-md btn-soft btn-error w-28">REJECTED</button>
+                </div>
+        `;
+        rej_job_container.append(job_cards);
         index++;
     };
 }

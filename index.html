@@ -41,7 +41,7 @@
                 </div>
                 <div class="card bg-neutral-50 rounded-2 p-2 sm:p-5">
                     <p class="font-medium text-[14px] text-[#323B49]">Rejected</p>
-                    <p class="font-bold text-[24px] text-[#EF4444]">0</p>
+                    <p id="dashboard-reject-job" class="font-bold text-[24px] text-[#EF4444]">0</p>
                 </div>
             </div>
         </div>
@@ -140,11 +140,37 @@
 
 
     <section id="rejected-section" class="rejected w-[90%] sm:w-[70%] sm:max-w-[1110px] mx-auto pb-6 hidden">
-        <div class="empty bg-base-200 rounded-[8px] py-28 px-6 flex flex-col justify-center items-center gap-5">
+        <div id="empty_reject" class="empty bg-base-200 rounded-[8px] py-28 px-6 flex flex-col justify-center items-center gap-5">
             <img src="./Resources/jobs.png" alt="">
             <div class="text">
                 <p class="text-center font-semibold text-[24px]  text-[#002C5C]">No jobs available</p>
                 <p class="text-center text-[px] text-[#64748B]">Check back soon for new job opportunities</p>
+            </div>
+        </div>
+
+        <div id="reject-job-container" class="jobCard flex flex-col gap-5">
+            <div class="text bg-base-200 rounded-[8px] p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class=" font-semibold text-[20px]   text-[#002C5C]">${obj.company_name}</p>
+                        <p class=" text-[16px]  text-[#64748B]">${obj.position}</p>
+                    </div>
+                    <button class="btn btn-circle">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </div>
+                <br>
+                <p class="flex items-center flex-wrap gap-1 md:gap-2 text-[14px] text-[#64748B] mb-5">
+                <span>${obj.location}</span>
+                <span>•</span>
+                <span>${obj.type}</span>
+                <span>•</span>
+                <span>${obj.salary}</span>
+                </p>
+                <button class="btn btn-xs sm:btn-md bg-base-300 text-info-content mb-2">Not Applied</button>
+                <p class=" text-[14px]  text-[#323B49] mb-3">${obj.description}</p>
+                <button class="btn btn-xs sm:btn-md btn-soft btn-accent w-28">INTERVIEW</button>
+                <button class="btn btn-xs sm:btn-md btn-soft btn-secondary w-28">REJECTED</button>
             </div>
         </div>
     </section>
