@@ -46,7 +46,7 @@ function loadJobCards(){
                             <p class=" font-semibold text-[20px]   text-[#002C5C]">${obj.company_name}</p>
                             <p class=" text-[16px]  text-[#64748B]">${obj.position}</p>
                         </div>
-                        <button onclick="deleteJob(${index})" class="btn btn-circle">
+                        <button onclick="deleteJob('${obj.company_name}')" class="btn btn-circle">
                             <i class="fa-regular fa-trash-can"></i>
                         </button>
                     </div>
@@ -69,26 +69,38 @@ function loadJobCards(){
     };
 }
 
-function deleteJob(idx){
-    if(interviewList.length != 0){
+function deleteJob(company){
+    if(interviewList.length !== 0){
         var index = 0;
         for(const elem of interviewList){
-            if(jobList[idx].company_name === elem.company_name){
+            if(elem.company_name === company){
                 interviewList.splice(index,1);
+                break;
             }
             index++;
         }
     }
-    if(rejectList.length != 0){
+    if(rejectList.length !== 0){
         var index = 0;
         for(const elem of rejectList){
-            if(jobList[idx].company_name === elem.company_name){
+            if(elem.company_name === company){
                 rejectList.splice(index,1);
+                break;
             }
             index++;
         }
     }
-    jobList.splice(idx,1);
+    if(jobList.length !== 0){
+        var index = 0;
+        for(const elem of jobList){
+            if(elem.company_name === company){
+                jobList.splice(index,1);
+                break;
+            }
+            index++;
+        }
+    }
+    
     loadJobCards();
     loadJobCards_Intewview();
     loadJobCards_Rejected();
@@ -202,7 +214,7 @@ function loadJobCards_Intewview(){
                             <p class=" font-semibold text-[20px]   text-[#002C5C]">${obj.company_name}</p>
                             <p class=" text-[16px]  text-[#64748B]">${obj.position}</p>
                         </div>
-                        <button onclick="deleteJob(${index})" class="btn btn-circle">
+                        <button onclick="deleteJob('${obj.company_name}')" class="btn btn-circle">
                             <i class="fa-regular fa-trash-can"></i>
                         </button>
                     </div>
@@ -265,7 +277,7 @@ function loadJobCards_Rejected(){
                             <p class=" font-semibold text-[20px]   text-[#002C5C]">${obj.company_name}</p>
                             <p class=" text-[16px]  text-[#64748B]">${obj.position}</p>
                         </div>
-                        <button onclick="deleteJob(${index})" class="btn btn-circle">
+                        <button onclick="deleteJob('${obj.company_name}')" class="btn btn-circle">
                             <i class="fa-regular fa-trash-can"></i>
                         </button>
                     </div>
