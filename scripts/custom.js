@@ -3,11 +3,31 @@ function getElement(id){
     return elem;
 }
 
+function section_job_counter(){
+    document.getElementById('buttonALL').addEventListener('click', function(){
+        document.getElementById('av_jobs_rej').classList.add('hidden');
+        document.getElementById('av_jobs_int').classList.add('hidden');
+        document.getElementById('av_jobs').classList.remove('hidden');
+    })
+
+    document.getElementById('buttonINTERVIEW').addEventListener('click', function(){
+        document.getElementById('av_jobs_rej').classList.add('hidden');
+        document.getElementById('av_jobs_int').classList.remove('hidden');
+        document.getElementById('av_jobs').classList.add('hidden');
+    })
+
+    document.getElementById('buttonREJECT').addEventListener('click', function(){
+        document.getElementById('av_jobs_rej').classList.remove('hidden');
+        document.getElementById('av_jobs_int').classList.add('hidden');
+        document.getElementById('av_jobs').classList.add('hidden');
+    })
+}
+
 function loadJobCards(){
     //setting job number
     const jobNum = document.getElementById('av_jobs');
     const dashboardTotal = document.getElementById('dashboard-total-job');
-    jobNum.innerText = jobList.length;
+    jobNum.innerText = jobList.length+' Jobs';
     dashboardTotal.innerText = jobList.length;
 
     //toggle empty section
@@ -174,6 +194,9 @@ function is_in_List(obj, inter_arr, reject_arr){
 
 
 function loadJobCards_Intewview(){
+    //dashboard job count
+    const inter_jobNum = document.getElementById('av_jobs_int');
+    inter_jobNum.innerText = interviewList.length+' of '+jobList.length+' Jobs';
     //setting interview job number
     const interview_jobNum = document.getElementById('dashboard-interview-job');
     interview_jobNum.innerText = interviewList.length;
@@ -238,6 +261,9 @@ function loadJobCards_Intewview(){
 }
 function loadJobCards_Rejected(){
     //setting reject job number
+    const REJ_Num = document.getElementById('av_jobs_rej');
+    REJ_Num.innerText = rejectList.length+' of '+jobList.length+' Jobs';
+
     const reject_jobNum = document.getElementById('dashboard-reject-job');
     reject_jobNum.innerText = rejectList.length;
     
