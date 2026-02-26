@@ -19,8 +19,15 @@ for(const obj of jobList){
     const job_cards = document.createElement('div');
     job_cards.innerHTML = `
     <div class="text bg-base-200 rounded-[8px] p-6">
-                <p class=" font-semibold text-[20px]   text-[#002C5C]">${obj.company_name}</p>
-                <p class=" text-[16px]  text-[#64748B]">${obj.position}</p>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class=" font-semibold text-[20px]   text-[#002C5C]">${obj.company_name}</p>
+                        <p class=" text-[16px]  text-[#64748B]">${obj.position}</p>
+                    </div>
+                    <button class="btn btn-circle">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </div>
                 <br>
                 <p class="flex items-center flex-wrap gap-1 md:gap-2 text-[14px] text-[#64748B] mb-5">
                 <span>${obj.location}</span>
