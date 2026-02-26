@@ -91,6 +91,7 @@ function deleteJob(idx){
     jobList.splice(idx,1);
     loadJobCards();
     loadJobCards_Intewview();
+    loadJobCards_Rejected();
 }
 
 function displaySection(id){
