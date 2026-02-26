@@ -60,3 +60,21 @@ function deleteJob(idx){
     loadJobCards();
 }
 
+function displaySection(id){
+    //hiding all sections
+    document.getElementById('all-section').classList.add('hidden');
+    document.getElementById('interview-section').classList.add('hidden');
+    document.getElementById('rejected-section').classList.add('hidden');
+    //display required section
+    document.getElementById(id).classList.remove('hidden');
+
+    //resetting buttons
+    const tab_buttons = document.querySelectorAll('.tab-button');
+
+    for(const buton of tab_buttons){
+        buton.classList.add('btn-outline')
+    }
+    //setting selected button color
+    event.target.classList.remove('btn-outline')
+}
+

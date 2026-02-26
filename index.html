@@ -60,9 +60,9 @@
 
 
     <section class="w-[90%] sm:w-[70%] sm:max-w-[1110px] mx-auto pb-6 ">
-        <button class="btn btn-xs sm:btn-md btn-outline btn-primary w-20">All</button>
-        <button class="btn btn-xs sm:btn-md btn-outline btn-primary w-20">Interview</button>
-        <button class="btn btn-xs sm:btn-md btn-outline btn-primary w-20">Rejeted</button>
+        <button onclick="displaySection('all-section')" class="tab-button btn btn-xs sm:btn-md btn-primary w-20">All</button>
+        <button onclick="displaySection('interview-section')" class="tab-button btn btn-xs sm:btn-md btn-outline btn-primary w-20">Interview</button>
+        <button onclick="displaySection('rejected-section')" class="tab-button btn btn-xs sm:btn-md btn-outline btn-primary w-20">Rejeted</button>
     </section>
 
     <section id="all-section" class="all w-[90%] sm:w-[70%] sm:max-w-[1110px] mx-auto pb-6 space-y-4">
@@ -101,8 +101,8 @@
     </section>
 
     
-    <section class="interview w-[90%] sm:w-[70%] sm:max-w-[1110px] mx-auto pb-6 hidden">
-        <div class="empty bg-base-200 rounded-[8px] py-28 px-6 flex flex-col justify-center items-center gap-5 hidden">
+    <section id="interview-section" class="interview w-[90%] sm:w-[70%] sm:max-w-[1110px] mx-auto pb-6 hidden">
+        <div class="empty bg-base-200 rounded-[8px] py-28 px-6 flex flex-col justify-center items-center gap-5">
             <img src="./Resources/jobs.png" alt="">
             <div class="text">
                 <p class="text-center font-semibold text-[24px]  text-[#002C5C]">No jobs available</p>
@@ -113,8 +113,8 @@
     </section>
 
 
-    <section class="rejected w-[90%] sm:w-[70%] sm:max-w-[1110px] mx-auto pb-6 hidden">
-        <div class="empty bg-base-200 rounded-[8px] py-28 px-6 flex flex-col justify-center items-center gap-5 hidden">
+    <section id="rejected-section" class="rejected w-[90%] sm:w-[70%] sm:max-w-[1110px] mx-auto pb-6 hidden">
+        <div class="empty bg-base-200 rounded-[8px] py-28 px-6 flex flex-col justify-center items-center gap-5">
             <img src="./Resources/jobs.png" alt="">
             <div class="text">
                 <p class="text-center font-semibold text-[24px]  text-[#002C5C]">No jobs available</p>
