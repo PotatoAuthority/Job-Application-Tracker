@@ -52,7 +52,7 @@
         <div class="available-jobs">
             <div class="flex justify-between items-center">
                 <p class="font-semibold text-[20px] text-[#002C5C]">Available Jobs</p>
-                <p class="font-medium text-[16px] text-[#64748B]""><span>0</span> Jobs</p>
+                <p class="font-medium text-[16px] text-[#64748B]""><span id="av_jobs">0</span> Jobs</p>
             </div>
         </div>
 
@@ -66,30 +66,15 @@
     </section>
 
     <section id="all-section" class="all w-[90%] sm:w-[70%] sm:max-w-[1110px] mx-auto pb-6 space-y-4">
-        <div class="empty bg-base-200 rounded-[8px] py-28 px-6 flex flex-col justify-center items-center gap-5">
+        <div id="empty_all" class="empty bg-base-200 rounded-[8px] py-28 px-6 flex flex-col justify-center items-center gap-5 hidden">
             <img src="./Resources/jobs.png" alt="">
             <div class="text">
                 <p class="text-center font-semibold text-[24px]  text-[#002C5C]">No jobs available</p>
                 <p class="text-center text-[px] text-[#64748B]">Check back soon for new job opportunities</p>
             </div>
         </div>
-        <div id="all-job-container" class="jobCard bg-base-200 rounded-[8px] p-6 gap-5">
-            <div class="text">
-                <p class=" font-semibold text-[20px]   text-[#002C5C]">Mobile First Corp</p>
-                <p class=" text-[16px]  text-[#64748B]">React Native Developer</p>
-                <br>
-                <p class="flex items-center gap-2 text-[14px] text-[#64748B] mb-5">
-                <span>Remote</span>
-                <span>•</span>
-                <span>Full-time</span>
-                <span>•</span>
-                <span>$130,000 - $175,000</span>
-                </p>
-                <button class="btn btn-xs sm:btn-md bg-base-300 text-info-content mb-2">Not Applied</button>
-                <p class=" text-[14px]  text-[#323B49] mb-3">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
-                <button class="btn btn-xs sm:btn-md btn-soft btn-accent w-28">INTERVIEW</button>
-                <button class="btn btn-xs sm:btn-md btn-soft btn-secondary w-28">REJECTED</button>
-            </div>
+        <div id="all-job-container" class="jobCard flex flex-col gap-5">
+            
         </div>
     </section>
 
