@@ -22,7 +22,7 @@ for(const obj of jobList){
                 <p class=" font-semibold text-[20px]   text-[#002C5C]">${obj.company_name}</p>
                 <p class=" text-[16px]  text-[#64748B]">${obj.position}</p>
                 <br>
-                <p class="flex items-center gap-2 text-[14px] text-[#64748B] mb-5">
+                <p class="flex items-center flex-wrap gap-1 md:gap-2 text-[14px] text-[#64748B] mb-5">
                 <span>${obj.location}</span>
                 <span>•</span>
                 <span>${obj.type}</span>
