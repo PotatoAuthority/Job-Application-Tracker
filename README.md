@@ -28,5 +28,16 @@ parent.append(new_elem);
 
 ***3. What is Event Bubbling? And how does it work?**
 
-Ans: 
+Ans: `In javascript, event can propagate in two ways: from child to parent (bubbling) and from parent to child(capturing). The propagation of event from child to parent and then all the way upto document is called Event bubbling. It is the default propagation mode in javascript.`
 
+`When an event is called, it first works in that element, and then it bubbles up to parent and then parent's parent and all the way upto root`
+
+**4. What is Event Delegation in JavaScript? Why is it useful?**
+
+Ans: `Event delegation in javascript is a way to add a single event listener to a parent element instead of adding event listener manually to each of the child elements of parent.`
+
+`Event delegation is useful because we only need to add event listener to parent element. It dynamycally listens to child element's event and bubble up to parent. It works even when a new child element is added, so it is very efficient.`
+
+**5. What is the difference between preventDefault() and stopPropagation() methods?**
+
+Ans: ``
