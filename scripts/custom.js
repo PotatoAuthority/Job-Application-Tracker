@@ -80,8 +80,8 @@ function loadJobCards(){
                     </p>
                     ${badgeHTML}
                     <p class=" text-[14px]  text-[#323B49] mb-3">${obj.description}</p>
-                    <button id="interview-btn" onclick="interview_button(${index})" class="interview-btn btn btn-xs sm:btn-md btn-soft btn-success w-28">INTERVIEW</button>
-                    <button id="reject-btn" onclick="reject_button(${index})" class="btn btn-xs sm:btn-md btn-soft btn-error w-28">REJECTED</button>
+                    <button id="interview-btn" onclick="interview_button('${obj.company_name}')" class="interview-btn btn btn-xs sm:btn-md btn-soft btn-success w-28">INTERVIEW</button>
+                    <button id="reject-btn" onclick="reject_button('${obj.company_name}')" class="btn btn-xs sm:btn-md btn-soft btn-error w-28">REJECTED</button>
                 </div>
         `;
         job_container.append(job_cards);
@@ -147,19 +147,34 @@ function displaySection(id){
 
 
 
-function interview_button(idx){
-    console.log(jobList[idx], 'interviewed');
-    // jobList[idx].isInterviewed = true;
-    // jobList[idx].isRejected = false;
-    // is_in_List(jobList[idx], interviewList);
-    if((jobList[idx].isInterviewed === false)&&(jobList[idx].isRejected === false)){
-        console.log(jobList[idx], 'inside condition 1');
-        interviewList.push(jobList[idx]);
-        jobList[idx].isInterviewed = true;
+function interview_button(companny){
+    //finding index of jobList
+    var index_in_jobList = 0;
+    for(var i = 0; i<jobList.length; i++){
+        if(jobList[i].company_name == companny){
+            index_in_jobList = i;
+            break;
+        }
+    }
+    if((jobList[index_in_jobList].isInterviewed === false)&&(jobList[index_in_jobList].isRejected === false)){
+        // console.log(jobList[idx], 'inside condition 1');
+        interviewList.push(jobList[index_in_jobList]);
+        jobList[index_in_jobList].isInterviewed = true;
         // showBadge();
     }
-    else if(jobList[idx].isRejected===true){
-        toggle(idx);
+    else if(jobList[index_in_jobList].isRejected===true){
+        var rej_index = 0;
+        for(const elem of rejectList){
+            if(elem.company_name === companny){
+                rejectList.splice(rej_index,1);
+                interviewList.push(jobList[index_in_jobList]);
+
+                jobList[index_in_jobList].isInterviewed = true;
+                jobList[index_in_jobList].isRejected = false;
+                break;
+            }
+            rej_index++;
+        }
     }
 
     loadJobCards();
@@ -167,15 +182,33 @@ function interview_button(idx){
     loadJobCards_Rejected();
 }
 
-function reject_button(idx){
-    if((jobList[idx].isInterviewed === false)&&(jobList[idx].isRejected === false)){
+function reject_button(companny){
+    var index_in_jobList = 0;
+    for(var i = 0; i<jobList.length; i++){
+        if(jobList[i].company_name == companny){
+            index_in_jobList = i;
+            break;
+        }
+    }
+    if((jobList[index_in_jobList].isInterviewed === false)&&(jobList[index_in_jobList].isRejected === false)){
         // console.log(jobList[idx], 'inside condition 1');
-        rejectList.push(jobList[idx]);
-        jobList[idx].isRejected = true;
+        rejectList.push(jobList[index_in_jobList]);
+        jobList[index_in_jobList].isRejected = true;
         // showBadge();
     }
-    else if(jobList[idx].isInterviewed===true){
-        toggle(idx);
+    else if(jobList[index_in_jobList].isInterviewed===true){
+        var inter_index = 0;
+        for(const elem of interviewList){
+            if(elem.company_name === companny){
+                interviewList.splice(inter_index,1);
+                rejectList.push(jobList[index_in_jobList]);
+
+                jobList[index_in_jobList].isInterviewed = false;
+                jobList[index_in_jobList].isRejected = true;
+                break;
+            }
+            inter_index++;
+        }
     }
   
     loadJobCards();
@@ -257,8 +290,8 @@ function loadJobCards_Intewview(){
                     </p>
                     ${badgeHTML}
                     <p class=" text-[14px]  text-[#323B49] mb-3">${obj.description}</p>
-                    <button id="interview-btn" onclick="interview_button(${index})" class="interview-btn btn btn-xs sm:btn-md btn-soft btn-success w-28">INTERVIEW</button>
-                    <button id="reject-btn" onclick="reject_button(${index})" class="btn btn-xs sm:btn-md btn-soft btn-error w-28">REJECTED</button>
+                    <button id="interview-btn" onclick="interview_button('${obj.company_name}')" class="interview-btn btn btn-xs sm:btn-md btn-soft btn-success w-28">INTERVIEW</button>
+                    <button id="reject-btn" onclick="reject_button('${obj.company_name}')" class="btn btn-xs sm:btn-md btn-soft btn-error w-28">REJECTED</button>
                 </div>
         `;
         int_job_container.append(job_cards);
@@ -323,8 +356,8 @@ function loadJobCards_Rejected(){
                     </p>
                     ${badgeHTML}
                     <p class=" text-[14px]  text-[#323B49] mb-3">${obj.description}</p>
-                    <button id="interview-btn" onclick="interview_button(${index})" class="interview-btn btn btn-xs sm:btn-md btn-soft btn-success w-28">INTERVIEW</button>
-                    <button id="reject-btn" onclick="reject_button(${index})" class="btn btn-xs sm:btn-md btn-soft btn-error w-28">REJECTED</button>
+                    <button id="interview-btn" onclick="interview_button('${obj.company_name}')" class="interview-btn btn btn-xs sm:btn-md btn-soft btn-success w-28">INTERVIEW</button>
+                    <button id="reject-btn" onclick="reject_button('${obj.company_name}')" class="btn btn-xs sm:btn-md btn-soft btn-error w-28">REJECTED</button>
                 </div>
         `;
         rej_job_container.append(job_cards);
