@@ -126,7 +126,7 @@ function deleteJob(company){
     loadJobCards_Rejected();
 }
 
-function displaySection(id){
+function displaySection(event, id){
     //hiding all sections
     document.getElementById('all-section').classList.add('hidden');
     document.getElementById('interview-section').classList.add('hidden');
