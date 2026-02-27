@@ -26,7 +26,7 @@ new_elem.innerText = 'This is new element';
 parent.append(new_elem);
 ```
 
-***3. What is Event Bubbling? And how does it work?**
+**3. What is Event Bubbling? And how does it work?**
 
 Ans: `In javascript, event can propagate in two ways: from child to parent (bubbling) and from parent to child(capturing). The propagation of event from child to parent and then all the way upto document is called Event bubbling. It is the default propagation mode in javascript.`
 
@@ -40,4 +40,6 @@ Ans: `Event delegation in javascript is a way to add a single event listener to 
 
 **5. What is the difference between preventDefault() and stopPropagation() methods?**
 
-Ans: ``
+Ans: `preventDefault() is used to stop a default behaviour of browser for an event. For example: we can stop anchor tag from redirecting to href location when it is clicked using preventDefault()`
+
+`On the otherhand, stopPropagation is used to stop an event from bubbling up. calling stopPropagation() on an event will stop it from reaching it's parent`
