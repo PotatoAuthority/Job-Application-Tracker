@@ -158,6 +158,9 @@ function interview_button(idx){
         jobList[idx].isInterviewed = true;
         // showBadge();
     }
+    else{
+        toggle(idx);
+    }
 
     loadJobCards();
     loadJobCards_Intewview();
@@ -170,6 +173,9 @@ function reject_button(idx){
         rejectList.push(jobList[idx]);
         jobList[idx].isRejected = true;
         // showBadge();
+    }
+    else{
+        toggle(idx);
     }
   
     loadJobCards();
