@@ -16,7 +16,9 @@ function toggle(indx){
             }
             index++;
         }
-        interviewList.splice(index,1);
+        if(found === true){
+            interviewList.splice(index,1);
+        }
     }  //check if isreject is false
     else if(jobList[indx].isRejected === true){
         index = 0;
@@ -32,7 +34,9 @@ function toggle(indx){
             }
             index++;
         }
-        rejectList.splice(index,1);
+        if(found === true){
+            rejectList.splice(index,1);
+        }
     }
     
 }

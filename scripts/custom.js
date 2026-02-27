@@ -158,7 +158,7 @@ function interview_button(idx){
         jobList[idx].isInterviewed = true;
         // showBadge();
     }
-    else{
+    else if(jobList[idx].isRejected===true){
         toggle(idx);
     }
 
@@ -174,7 +174,7 @@ function reject_button(idx){
         jobList[idx].isRejected = true;
         // showBadge();
     }
-    else{
+    else if(jobList[idx].isInterviewed===true){
         toggle(idx);
     }
   
